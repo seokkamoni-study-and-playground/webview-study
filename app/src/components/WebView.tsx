@@ -4,11 +4,11 @@ import { WebView as ReactNativeWebView } from 'react-native-webview';
 import useWebViewController from '../hooks/useWebViewController';
 
 interface WebViewProps{
-    pageKey: string;
+    pagePath: string;
 }
 
-export default function WebView({ pageKey }:WebViewProps) {
-  const { uri, ProgressBar, onLoadProgress, requestOnMessage } = useWebViewController(pageKey);
+export default function WebView({ pagePath }:WebViewProps) {
+  const { uri, ProgressBar, onLoadProgress, requestOnMessage } = useWebViewController(pagePath);
 
   return (
     <View style={styles.container}>

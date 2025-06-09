@@ -5,6 +5,6 @@ export default function CatDetail() {
   const { id } = useLocalSearchParams();
 
   return (
-    <WebView pageKey={`/cat/${id}`} />
+    <WebView pagePath={`/cat/${id}`} />
   );
 }

@@ -64,7 +64,7 @@ type PostMessageTypes = {
     data: Record<string, any>;
   };
   
-  export default function useWebViewController(pageKey: string) {
+  export default function useWebViewController(pagePath: string) {
     const router = useRouter();
     const webProgressRef = useRef<WebViewProgress>(null);
   
@@ -99,7 +99,7 @@ type PostMessageTypes = {
       };
   
     return {
-      uri: `${TARGET_URL}${pageKey.toLowerCase()}`,
+      uri: `${TARGET_URL}${pagePath}`,
       ProgressBar: WebViewProgress,
       onLoadProgress,
       requestOnMessage,
