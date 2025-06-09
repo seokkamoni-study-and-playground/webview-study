@@ -1,9 +1,9 @@
-import { NavigationProp, ParamListBase, StackActions } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 import { Component, useCallback, useRef } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { WebViewMessageEvent, WebViewProgressEvent } from "react-native-webview/lib/WebViewTypes";
 import { TARGET_URL } from "../constants/route";
-import { Href, useNavigation, useRouter } from "expo-router";
+import { Href, useRouter } from "expo-router";
 
 interface WebViewProgressProps {
     navigation?: NavigationProp<ParamListBase>;
@@ -61,7 +61,6 @@ class WebViewProgress extends Component<WebViewProgressProps, WebViewProgressSta
 type PostMessageTypes = {
     type: string;
     path: string;
-    data: Record<string, any>;
   };
   
   export default function useWebViewController(pagePath: string) {
