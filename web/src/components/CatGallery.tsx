@@ -2,9 +2,11 @@
 
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useInfiniteCats } from '@/hooks/useInfiniteCats';
+import { useInfiniteCats } from '@/hooks/queries/useInfiniteCats';
+import useAppRouter from '@/hooks/common/useAppRouter';
 
 const CatGallery = () => {
+  const router = useAppRouter();
   const {
     data,
     fetchNextPage,
@@ -22,6 +24,11 @@ const CatGallery = () => {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  const handleCatClick = (catId: string) => {
+    router.push(`/cat/${catId}`);
+  }
+
+  
   return (
     <>
       <div
@@ -36,8 +43,9 @@ const CatGallery = () => {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               key={cat.id}
+              onClick={() => handleCatClick(cat.id)}
               src={cat.url}
-              alt="cat"
+              alt={`cat-${cat.id}`}
               style={{ width: '100%', borderRadius: '12px' }}
             />
           ))

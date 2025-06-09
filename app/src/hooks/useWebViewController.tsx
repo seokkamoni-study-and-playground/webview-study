@@ -2,8 +2,8 @@ import { NavigationProp, ParamListBase, StackActions } from "@react-navigation/n
 import { Component, useCallback, useRef } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import { WebViewMessageEvent, WebViewProgressEvent } from "react-native-webview/lib/WebViewTypes";
-import { PAGE_NAMES, TARGET_URL } from "../constants/route";
-import { useNavigation } from "expo-router";
+import { TARGET_URL } from "../constants/route";
+import { Href, useNavigation, useRouter } from "expo-router";
 
 interface WebViewProgressProps {
     navigation?: NavigationProp<ParamListBase>;
@@ -65,7 +65,7 @@ type PostMessageTypes = {
   };
   
   export default function useWebViewController(pageKey: string) {
-    const navigation = useNavigation();
+    const router = useRouter();
     const webProgressRef = useRef<WebViewProgress>(null);
   
     const onLoadProgress = useCallback(({ nativeEvent }: WebViewProgressEvent) => {
@@ -86,16 +86,11 @@ type PostMessageTypes = {
           if (postMessage.type === 'ROUTER_EVENT') {
             const { path } = postMessage;
     
-            if (path === 'back') {
-            return navigation.dispatch(StackActions.pop(1));
+            if (path === 'back' && router.canGoBack()) {
+              router.back();
             }
-    
-            return navigation.dispatch(
-            StackActions.push(PAGE_NAMES[path], {
-                url: `${TARGET_URL}${path}`,
-                isStack: true,
-            }),
-            );
+
+            return router.push(path as Href);
           }
 
         } catch (error) {

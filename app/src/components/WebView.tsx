@@ -15,7 +15,7 @@ export default function WebView({ pageKey }:WebViewProps) {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <ProgressBar />
         <ReactNativeWebView
-          onMessage={requestOnMessage}
+          onMessage={requestOnMessage()}
           source={{ uri }}
           originWhitelist={['*']}
           startInLoadingState={true}

@@ -11,6 +11,10 @@ export default function RootLayout() {
             name="index"
             options={{ title: 'Cat Gallery' }}
           />
+          <Stack.Screen
+            name="cat/[id]"
+            options={{ title: 'Cat Detail' }}
+          />
         </Stack>
       </SafeAreaView>
     </GestureHandlerRootView>

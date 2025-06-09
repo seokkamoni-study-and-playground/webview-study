@@ -1,14 +1,8 @@
 import { QueryFunctionContext, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
+import { CatImage } from '@/types/cat';
 
 const LIMIT = 10;
-
-export interface CatImage {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-}
 
 export interface FetchCatsResponse {
   cats: CatImage[];
