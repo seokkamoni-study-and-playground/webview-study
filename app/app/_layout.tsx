@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from 'react';
 import { sleep } from '@/src/utils/sleep';
+import NetworkProvider from '@/src/contexts/NetworkContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -45,16 +46,18 @@ export default function RootLayout() {
       onLayout={onLayoutRootView} 
     >
       <SafeAreaView style={styles.safeAreaView}>
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{ title: 'Cat Gallery' }}
-          />
-          <Stack.Screen
-            name="cat/[id]"
-            options={{ title: 'Cat Detail' }}
-          />
-        </Stack>
+        <NetworkProvider>
+          <Stack>
+            <Stack.Screen
+              name="index"
+              options={{ title: 'Cat Gallery' }}
+            />
+            <Stack.Screen
+              name="cat/[id]"
+              options={{ title: 'Cat Detail' }}
+            />
+          </Stack>
+        </NetworkProvider>
       </SafeAreaView>
     </GestureHandlerRootView>
   )

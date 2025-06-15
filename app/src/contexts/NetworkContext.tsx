@@ -7,7 +7,7 @@ interface NetworkContextState {
 
 const NetworkContext = createContext<NetworkContextState | null>(null);
 
-export const NetworkProvider = ({ children }: PropsWithChildren) => {
+export default function NetworkProvider({ children }: PropsWithChildren) {
   const [isOffline, setIsOffline] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const NetworkProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const useNetwork = (): NetworkContextState => {
+export function useNetwork(): NetworkContextState {
   const context = useContext(NetworkContext);
   if (!context) {
     throw new Error('useNetwork must be used within a NetworkProvider');
